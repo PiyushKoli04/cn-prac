@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CN Practical Files & Cisco Simulations</title>
-  <meta name="description" content="Download Computer Networks practical lab manuals (PDF) and Cisco Packet Tracer (.pkt) simulation files.">
+  <meta name="description"
+    content="Download Computer Networks practical lab manuals (PDF), Cisco Packet Tracer (.pkt) simulation files, and experiment instructions.">
   <style>
     :root {
       --bg: #f8fafc;
@@ -22,6 +24,8 @@
       --accent-pdf-bg: #fef2f2;
       --accent-pkt: #0284c7;
       --accent-pkt-bg: #f0f9ff;
+      --accent-txt: #10b981;
+      --accent-txt-bg: #ecfdf5;
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
@@ -47,6 +51,8 @@
       --accent-pdf-bg: #450a0a;
       --accent-pkt: #38bdf8;
       --accent-pkt-bg: #082f49;
+      --accent-txt: #34d399;
+      --accent-txt-bg: #064e3b;
       --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
       --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
       --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
@@ -437,6 +443,126 @@
       border: 1px solid var(--border);
     }
 
+    /* Embedded Instructions Panel */
+    .instructions-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-txt);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+      margin-top: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .instructions-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed var(--border);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .instructions-panel-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .instructions-badge {
+      background: var(--accent-txt-bg);
+      color: var(--accent-txt);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .instructions-header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-panel-action {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-panel-action:hover {
+      background: var(--surface-hover);
+      border-color: var(--text-muted);
+    }
+
+    .instructions-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .instruction-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .protocol-tag {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      min-width: 62px;
+      text-align: center;
+      flex-shrink: 0;
+      letter-spacing: 0.04em;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    .instruction-text {
+      flex: 1;
+      color: var(--text-main);
+    }
+
+    .instruction-code {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85em;
+      font-weight: 600;
+    }
+
+    .instruction-link {
+      color: var(--primary);
+      text-decoration: underline;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
     /* File List Grid */
     .files-grid {
       display: grid;
@@ -491,6 +617,12 @@
       border: 1px solid rgba(2, 132, 199, 0.2);
     }
 
+    .file-icon-box.txt {
+      background-color: var(--accent-txt-bg);
+      color: var(--accent-txt);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
     .file-info {
       flex: 1;
       min-width: 0;
@@ -536,6 +668,11 @@
     .pill-pkt {
       background: var(--accent-pkt-bg);
       color: var(--accent-pkt);
+    }
+
+    .pill-txt {
+      background: var(--accent-txt-bg);
+      color: var(--accent-txt);
     }
 
     .pill-size {
@@ -594,6 +731,109 @@
     /* Flat Grid View Styling */
     #flatViewContainer {
       display: none;
+    }
+
+    /* Modal for Viewing Instructions */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 100;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 680px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      max-height: 85vh;
+      animation: modalFadeIn 0.2s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--text-main);
+    }
+
+    .modal-body {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-raw-text {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      color: var(--text-main);
+      margin-top: 12px;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      border-bottom-left-radius: var(--radius-lg);
+      border-bottom-right-radius: var(--radius-lg);
     }
 
     /* Empty state */
@@ -676,22 +916,40 @@
       .hero-title {
         font-size: 1.45rem;
       }
+
       .toolbar-bottom {
         flex-direction: column;
         align-items: stretch;
       }
+
       .actions-group {
         justify-content: space-between;
       }
+
       .files-grid {
         grid-template-columns: 1fr;
       }
+
       .exp-section {
         padding: 16px;
+      }
+
+      .instructions-panel {
+        padding: 14px;
+      }
+
+      .instruction-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .protocol-tag {
+        align-self: flex-start;
       }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Header -->
@@ -709,14 +967,15 @@
 
       <h1 class="hero-title">CN Lab Practical Files & Simulations</h1>
       <p class="hero-subtitle">
-        One-click direct downloads for all experiment manuals (PDF) and Cisco Packet Tracer (.pkt) simulation models.
+        One-click direct downloads for all experiment manuals (PDF), Cisco Packet Tracer (.pkt) simulation models, and
+        Wireshark capture guides (.txt).
       </p>
     </div>
   </header>
 
   <!-- Main Content -->
   <main class="container" style="flex: 1; padding-top: 24px; padding-bottom: 40px;">
-    
+
     <!-- Stats Strip -->
     <div class="stats-strip">
       <div class="stat-card">
@@ -732,7 +991,11 @@
         <span class="stat-label">Packet Tracer (.pkt)</span>
       </div>
       <div class="stat-card">
-        <span class="stat-number">17</span>
+        <span class="stat-number">1</span>
+        <span class="stat-label">Instructions (.txt)</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">18</span>
         <span class="stat-label">Total Files</span>
       </div>
     </div>
@@ -742,15 +1005,11 @@
       <div class="search-box-row">
         <div class="search-wrapper">
           <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
-          <input 
-            type="text" 
-            id="searchInput" 
-            class="search-input" 
-            placeholder="Search experiment number, topic, or filename... (Press '/' to focus)" 
-            autocomplete="off"
-          />
+          <input type="text" id="searchInput" class="search-input"
+            placeholder="Search experiment number, topic, or filename... (Press '/' to focus)" autocomplete="off" />
           <button id="clearSearch" class="clear-search" title="Clear search">&times;</button>
         </div>
       </div>
@@ -758,13 +1017,16 @@
       <div class="toolbar-bottom">
         <div class="filters-group">
           <button class="filter-btn active" data-filter="all">
-            All Files <span class="count-badge" id="countAll">17</span>
+            All Files <span class="count-badge" id="countAll">18</span>
           </button>
           <button class="filter-btn" data-filter="pdf">
             PDF Manuals <span class="count-badge" id="countPdf">8</span>
           </button>
           <button class="filter-btn" data-filter="pkt">
             Packet Tracer (.pkt) <span class="count-badge" id="countPkt">9</span>
+          </button>
+          <button class="filter-btn" data-filter="txt">
+            Instructions (.txt) <span class="count-badge" id="countTxt">1</span>
           </button>
         </div>
 
@@ -778,7 +1040,8 @@
             </button>
             <button id="viewFlatBtn" class="view-btn" title="Flat Grid View">
               <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
               </svg>
               Grid
             </button>
@@ -786,9 +1049,10 @@
 
           <button id="btnDownloadAll" class="btn-download-all" title="Download all currently visible files">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            Download Visible (<span id="visibleCount">17</span>)
+            Download Visible (<span id="visibleCount">18</span>)
           </button>
         </div>
       </div>
@@ -797,7 +1061,8 @@
     <!-- Empty State for Searches -->
     <div id="emptyState" class="empty-state">
       <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+          d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
       <h3>No matching files found</h3>
       <p>Try searching with another experiment name, keyword, or clear filters.</p>
@@ -811,6 +1076,82 @@
     <div id="flatViewContainer" class="files-grid"></div>
 
   </main>
+
+  <!-- Instructions Modal -->
+  <div id="instructionsModal" class="modal-overlay" onclick="closeInstructionsModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div class="modal-title">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            style="color: var(--accent-txt);">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span id="modalTitle">Experiment 06 - Wireshark Capture Instructions</span>
+        </div>
+        <button class="modal-close-btn" onclick="closeInstructionsModal()" title="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px;">
+          Instructions from <strong style="color: var(--text-main);">exp 6 instructs.txt</strong> for capturing and
+          analyzing packet traffic in Wireshark:
+        </p>
+        <div class="instructions-list">
+          <div class="instruction-row">
+            <span class="protocol-tag">ICMP</span>
+            <div class="instruction-text">
+              Start capturing, run <code class="instruction-code">ping google.com</code> in terminal, then filter with
+              <code class="instruction-code">icmp</code>. You should see Echo (ping) request and reply pairs.
+            </div>
+          </div>
+          <div class="instruction-row">
+            <span class="protocol-tag">HTTP</span>
+            <div class="instruction-text">
+              Open <a href="http://neverssl.com" target="_blank" rel="noopener noreferrer"
+                class="instruction-link">http://neverssl.com</a> or <a href="http://example.com" target="_blank"
+                rel="noopener noreferrer" class="instruction-link">http://example.com</a>. Most sites use HTTPS now, so
+              you need a plain-HTTP site to get GET requests. Filter with <code class="instruction-code">http</code>.
+            </div>
+          </div>
+          <div class="instruction-row">
+            <span class="protocol-tag">HTTPS</span>
+            <div class="instruction-text">
+              Open any HTTPS site and filter with <code class="instruction-code">tls</code>. Look for Client Hello and
+              Server Hello.
+            </div>
+          </div>
+          <div class="instruction-row">
+            <span class="protocol-tag">UDP</span>
+            <div class="instruction-text">
+              Run <code class="instruction-code">nslookup google.com</code> while capturing and filter with <code
+                class="instruction-code">dns</code> or <code class="instruction-code">udp</code>.
+            </div>
+          </div>
+          <div class="instruction-row">
+            <span class="protocol-tag">TCP</span>
+            <div class="instruction-text">
+              Filter with <code class="instruction-code">tcp</code>. Expand <strong>“Transmission Control
+                Protocol”</strong> to see the ports, sequence number, acknowledgment number and flags.
+            </div>
+          </div>
+        </div>
+        <div class="modal-raw-text" id="modalRawContent"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-panel-action" onclick="copyInstructionsText()" style="flex: 0 0 auto;">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+          </svg>
+          Copy Text
+        </button>
+        <a href="exp%206%20instructs.txt" download="exp 6 instructs.txt" class="btn btn-download"
+          style="flex: 0 0 auto; padding: 7px 16px;">
+          Download exp 6 instructs.txt
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Footer -->
   <footer>
@@ -969,6 +1310,18 @@
         size: "1.5 MB",
         sizeBytes: 1547741
       },
+      {
+        id: "exp6-txt",
+        expNum: 6,
+        expTitle: "Network Traffic Analysis using Wireshark",
+        aim: "Analyze network traffic packets, protocols (TCP, UDP, ICMP, HTTP) and headers using Wireshark packet sniffer.",
+        title: "Experiment 06 - Wireshark Capture Instructions",
+        filename: "exp 6 instructs.txt",
+        path: "exp%206%20instructs.txt",
+        type: "txt",
+        size: "602 B",
+        sizeBytes: 602
+      },
 
       // Experiment 7
       {
@@ -1049,6 +1402,13 @@
       }
     ];
 
+    const exp6RawInstructions = `Getting each part of the experiment
+ICMP: Start capturing, run ping google.com, then filter with icmp. You should see Echo (ping) request and reply pairs.
+HTTP: Open http://neverssl.com or http://example.com. Most sites use HTTPS now, so you need a plain-HTTP site to get GET requests. Filter with http.
+HTTPS: Open any HTTPS site and filter with tls. Look for Client Hello and Server Hello.
+UDP: Run nslookup google.com while capturing and filter with dns or udp.
+TCP: Filter with tcp. Expand “Transmission Control Protocol” to see the ports, sequence number, acknowledgment number and flags.`;
+
     // State
     let currentFilter = 'all';
     let searchQuery = '';
@@ -1070,6 +1430,8 @@
     const themeLabel = document.getElementById('themeLabel');
     const toast = document.getElementById('toast');
     const toastMessage = document.getElementById('toastMessage');
+    const instructionsModal = document.getElementById('instructionsModal');
+    const modalRawContent = document.getElementById('modalRawContent');
 
     // SVG Icons
     const icons = {
@@ -1080,13 +1442,19 @@
       pkt: `<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
             </svg>`,
+      txt: `<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>`,
       download: `<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>`,
       preview: `<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>`
+                </svg> `,
+      eye: `<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg> `
     };
 
     // Filter Logic
@@ -1104,7 +1472,8 @@
           const matchExpNum = ("exp " + file.expNum).includes(q) || ("experiment " + file.expNum).includes(q) || ("exp" + file.expNum).includes(q);
           const matchExpTitle = file.expTitle.toLowerCase().includes(q);
           const matchAim = file.aim.toLowerCase().includes(q);
-          return matchTitle || matchFilename || matchExpNum || matchExpTitle || matchAim;
+          const matchKeyword = (file.expNum === 6 && (q.includes("icmp") || q.includes("wireshark") || q.includes("http") || q.includes("tcp") || q.includes("instruct")));
+          return matchTitle || matchFilename || matchExpNum || matchExpTitle || matchAim || matchKeyword;
         }
         return true;
       });
@@ -1112,14 +1481,19 @@
 
     // Render Single File Card
     function createFileCardHTML(file) {
-      const isPdf = file.type === 'pdf';
-      const typeClass = isPdf ? 'pdf' : 'pkt';
-      const icon = isPdf ? icons.pdf : icons.pkt;
-      const previewBtn = isPdf 
-        ? `<a href="${file.path}" target="_blank" rel="noopener noreferrer" class="btn btn-preview" title="View / Preview PDF in new tab">
+      const typeClass = file.type;
+    const icon = icons[file.type] || icons.pdf;
+
+    let previewBtn = '';
+    if (file.type === 'pdf') {
+      previewBtn = `<a href="${file.path}" target="_blank" rel="noopener noreferrer" class="btn btn-preview" title="View / Preview PDF in new tab">
              ${icons.preview} View
-           </a>`
-        : '';
+           </a> `;
+      } else if (file.type === 'txt') {
+        previewBtn = `<button onclick="openInstructionsModal()" class="btn btn-preview" title="Read instructions on page">
+        ${icons.eye} Read
+           </button> `;
+      }
 
       return `
         <div class="file-card" data-file-id="${file.id}">
@@ -1143,7 +1517,67 @@
             ${previewBtn}
           </div>
         </div>
-      `;
+        `;
+    }
+
+    // Render Instructions Panel for Exp 6
+    function createExp6InstructionsPanelHTML() {
+      return `
+        <div class="instructions-panel" id="exp6InstructionsPanel">
+          <div class="instructions-panel-header">
+            <div class="instructions-panel-title">
+              <span class="instructions-badge">EXP 06 INSTRUCTIONS</span>
+              <span>Wireshark Capture Steps (exp 6 instructs.txt)</span>
+            </div>
+            <div class="instructions-header-actions">
+              <button class="btn-panel-action" onclick="copyInstructionsText()" title="Copy instructions to clipboard">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                </svg>
+                Copy Instructions
+              </button>
+              <a href="exp%206%20instructs.txt" download="exp 6 instructs.txt" class="btn-panel-action" title="Download text file">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download .txt
+              </a>
+            </div>
+          </div>
+          <div class="instructions-list">
+            <div class="instruction-row">
+              <span class="protocol-tag">ICMP</span>
+              <div class="instruction-text">
+                Start capturing, run <code class="instruction-code">ping google.com</code>, then filter with <code class="instruction-code">icmp</code>. You should see Echo (ping) request and reply pairs.
+              </div>
+            </div>
+            <div class="instruction-row">
+              <span class="protocol-tag">HTTP</span>
+              <div class="instruction-text">
+                Open <a href="http://neverssl.com" target="_blank" rel="noopener noreferrer" class="instruction-link">http://neverssl.com</a> or <a href="http://example.com" target="_blank" rel="noopener noreferrer" class="instruction-link">http://example.com</a>. Most sites use HTTPS now, so you need a plain-HTTP site to get GET requests. Filter with <code class="instruction-code">http</code>.
+              </div>
+            </div>
+            <div class="instruction-row">
+              <span class="protocol-tag">HTTPS</span>
+              <div class="instruction-text">
+                Open any HTTPS site and filter with <code class="instruction-code">tls</code>. Look for Client Hello and Server Hello.
+              </div>
+            </div>
+            <div class="instruction-row">
+              <span class="protocol-tag">UDP</span>
+              <div class="instruction-text">
+                Run <code class="instruction-code">nslookup google.com</code> while capturing and filter with <code class="instruction-code">dns</code> or <code class="instruction-code">udp</code>.
+              </div>
+            </div>
+            <div class="instruction-row">
+              <span class="protocol-tag">TCP</span>
+              <div class="instruction-text">
+                Filter with <code class="instruction-code">tcp</code>. Expand <strong>“Transmission Control Protocol”</strong> to see the ports, sequence number, acknowledgment number and flags.
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
     }
 
     // Render Function
@@ -1185,9 +1619,10 @@
           const group = groups[num];
           const filesCount = group.files.length;
           const filesCountText = filesCount === 1 ? '1 file' : `${filesCount} files`;
+          const isExp6 = group.expNum === 6;
 
           html += `
-            <section class="exp-section">
+        <section class="exp-section">
               <div class="exp-header">
                 <div class="exp-meta">
                   <span class="exp-number-tag">EXP ${group.expNum.toString().padStart(2, '0')}</span>
@@ -1199,8 +1634,9 @@
               <div class="files-grid">
                 ${group.files.map(createFileCardHTML).join('')}
               </div>
+              ${isExp6 ? createExp6InstructionsPanelHTML() : ''}
             </section>
-          `;
+        `;
         });
 
         groupedViewContainer.innerHTML = html;
@@ -1248,6 +1684,32 @@
       toastTimeout = setTimeout(() => {
         toast.classList.remove('show');
       }, 3000);
+    }
+
+    // Instructions Modal Controls
+    function openInstructionsModal() {
+      modalRawContent.textContent = exp6RawInstructions;
+      instructionsModal.classList.add('open');
+    }
+
+    function closeInstructionsModal(e) {
+      if (e && e.target !== instructionsModal && !e.target.classList.contains('modal-close-btn')) return;
+      instructionsModal.classList.remove('open');
+    }
+
+    function copyInstructionsText() {
+      navigator.clipboard.writeText(exp6RawInstructions).then(() => {
+        showToast('Instructions copied to clipboard!');
+      }).catch(() => {
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = exp6RawInstructions;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('Instructions copied to clipboard!');
+      });
     }
 
     // Filter Buttons Click
@@ -1303,15 +1765,21 @@
 
     // Keyboard Shortcuts
     document.addEventListener('keydown', (e) => {
-      if ((e.key === '/' || (e.ctrlKey && e.key === 'k')) && document.activeElement !== searchInput) {
+      if (e.key === 'Escape') {
+        if (instructionsModal.classList.contains('open')) {
+          closeInstructionsModal();
+          return;
+        }
+        if (document.activeElement === searchInput) {
+          searchInput.value = '';
+          searchQuery = '';
+          clearSearch.style.display = 'none';
+          searchInput.blur();
+          render();
+        }
+      } else if ((e.key === '/' || (e.ctrlKey && e.key === 'k')) && document.activeElement !== searchInput) {
         e.preventDefault();
         searchInput.focus();
-      } else if (e.key === 'Escape' && document.activeElement === searchInput) {
-        searchInput.value = '';
-        searchQuery = '';
-        clearSearch.style.display = 'none';
-        searchInput.blur();
-        render();
       }
     });
 
@@ -1349,4 +1817,5 @@
     render();
   </script>
 </body>
+
 </html>
