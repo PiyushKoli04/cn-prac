@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CN Practical Files & Cisco Simulations</title>
+  <meta name="description" content="Download Computer Networks practical lab manuals (PDF) and Cisco Packet Tracer (.pkt) simulation files.">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --border-focus: #6366f1;
+      --primary: #4f46e5;
+      --primary-hover: #4338ca;
+      --primary-light: #eef2ff;
+      --accent-pdf: #ef4444;
+      --accent-pdf-bg: #fef2f2;
+      --accent-pkt: #0284c7;
+      --accent-pkt-bg: #f0f9ff;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #090d16;
+      --surface: #111827;
+      --surface-hover: #1f2937;
+      --card-bg: #131c2e;
+      --text-main: #f3f4f6;
+      --text-muted: #94a3b8;
+      --border: #1e293b;
+      --border-focus: #818cf8;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-light: #1e1b4b;
+      --accent-pdf: #f87171;
+      --accent-pdf-bg: #450a0a;
+      --accent-pkt: #38bdf8;
+      --accent-pkt-bg: #082f49;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .badge-hub {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-hub span {
+      width: 8px;
+      height: 8px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .theme-toggle-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--surface-hover);
+      border-color: var(--text-muted);
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .hero-subtitle {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      max-width: 650px;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin: 24px 0 28px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    /* Search & Filter Bar */
+    .toolbar {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .search-box-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-wrapper {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+      width: 18px;
+      height: 18px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 11px 40px 11px 42px;
+      font-size: 0.95rem;
+      background: var(--bg);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: all 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--border-focus);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .clear-search {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 2px 6px;
+      display: none;
+      border-radius: 50%;
+    }
+
+    .clear-search:hover {
+      color: var(--text-main);
+    }
+
+    .toolbar-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .filters-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filter-btn:hover {
+      background: var(--surface-hover);
+      color: var(--text-main);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .filter-btn .count-badge {
+      background: rgba(0, 0, 0, 0.1);
+      padding: 1px 7px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+    }
+
+    .filter-btn.active .count-badge {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .actions-group {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-download-all {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 7px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background-color 0.15s ease, transform 0.1s ease;
+    }
+
+    .btn-download-all:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-download-all:active {
+      transform: translateY(0);
+    }
+
+    .view-toggle {
+      display: flex;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 2px;
+    }
+
+    .view-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 5px 10px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+
+    .view-btn.active {
+      background: var(--surface);
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Section & Experiment Cards */
+    .exp-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .exp-section:hover {
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+    }
+
+    [data-theme="dark"] .exp-section:hover {
+      border-color: #334155;
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .exp-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .exp-number-tag {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .exp-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .exp-aim {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      width: 100%;
+    }
+
+    .exp-files-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg);
+      padding: 3px 9px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+    }
+
+    /* File List Grid */
+    .files-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    /* Single File Card */
+    .file-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .file-card:hover {
+      border-color: var(--border-focus);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .file-card-top {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .file-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .file-icon-box.pdf {
+      background-color: var(--accent-pdf-bg);
+      color: var(--accent-pdf);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .file-icon-box.pkt {
+      background-color: var(--accent-pkt-bg);
+      color: var(--accent-pkt);
+      border: 1px solid rgba(2, 132, 199, 0.2);
+    }
+
+    .file-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .file-display-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-main);
+      margin-bottom: 2px;
+      word-break: break-word;
+      line-height: 1.35;
+    }
+
+    .file-real-name {
+      font-size: 0.77rem;
+      color: var(--text-muted);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      word-break: break-all;
+    }
+
+    .file-pills {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: var(--radius-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .pill-pdf {
+      background: var(--accent-pdf-bg);
+      color: var(--accent-pdf);
+    }
+
+    .pill-pkt {
+      background: var(--accent-pkt-bg);
+      color: var(--accent-pkt);
+    }
+
+    .pill-size {
+      background: var(--bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .file-actions {
+      display: flex;
+      gap: 8px;
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: none;
+      flex: 1;
+      text-align: center;
+    }
+
+    .btn-download {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-download:hover {
+      background: var(--primary-hover);
+      color: #ffffff;
+    }
+
+    .btn-preview {
+      background: var(--bg);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      flex: 0 0 auto;
+      padding: 7px 10px;
+    }
+
+    .btn-preview:hover {
+      background: var(--surface-hover);
+      border-color: var(--text-muted);
+    }
+
+    /* Flat Grid View Styling */
+    #flatViewContainer {
+      display: none;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-lg);
+      margin: 20px 0;
+      display: none;
+    }
+
+    .empty-state svg {
+      width: 48px;
+      height: 48px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .empty-state h3 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999;
+      border: 1px solid #334155;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      padding: 24px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 1.45rem;
+      }
+      .toolbar-bottom {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .actions-group {
+        justify-content: space-between;
+      }
+      .files-grid {
+        grid-template-columns: 1fr;
+      }
+      .exp-section {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-top">
+        <div class="badge-hub">
+          <span></span> Computer Networks Practical Repository
+        </div>
+        <button id="themeToggle" class="theme-toggle-btn" title="Toggle Dark/Light Mode">
+          <span id="themeIcon">🌙</span>
+          <span id="themeLabel">Dark</span>
+        </button>
+      </div>
+
+      <h1 class="hero-title">CN Lab Practical Files & Simulations</h1>
+      <p class="hero-subtitle">
+        One-click direct downloads for all experiment manuals (PDF) and Cisco Packet Tracer (.pkt) simulation models.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container" style="flex: 1; padding-top: 24px; padding-bottom: 40px;">
+    
+    <!-- Stats Strip -->
+    <div class="stats-strip">
+      <div class="stat-card">
+        <span class="stat-number">8</span>
+        <span class="stat-label">Experiments</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">8</span>
+        <span class="stat-label">PDF Manuals</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">9</span>
+        <span class="stat-label">Packet Tracer (.pkt)</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">17</span>
+        <span class="stat-label">Total Files</span>
+      </div>
+    </div>
+
+    <!-- Toolbar: Search & Filters -->
+    <div class="toolbar">
+      <div class="search-box-row">
+        <div class="search-wrapper">
+          <svg class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="Search experiment number, topic, or filename... (Press '/' to focus)" 
+            autocomplete="off"
+          />
+          <button id="clearSearch" class="clear-search" title="Clear search">&times;</button>
+        </div>
+      </div>
+
+      <div class="toolbar-bottom">
+        <div class="filters-group">
+          <button class="filter-btn active" data-filter="all">
+            All Files <span class="count-badge" id="countAll">17</span>
+          </button>
+          <button class="filter-btn" data-filter="pdf">
+            PDF Manuals <span class="count-badge" id="countPdf">8</span>
+          </button>
+          <button class="filter-btn" data-filter="pkt">
+            Packet Tracer (.pkt) <span class="count-badge" id="countPkt">9</span>
+          </button>
+        </div>
+
+        <div class="actions-group">
+          <div class="view-toggle">
+            <button id="viewGroupedBtn" class="view-btn active" title="Grouped by Experiment">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+              </svg>
+              Grouped
+            </button>
+            <button id="viewFlatBtn" class="view-btn" title="Flat Grid View">
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+              Grid
+            </button>
+          </div>
+
+          <button id="btnDownloadAll" class="btn-download-all" title="Download all currently visible files">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            Download Visible (<span id="visibleCount">17</span>)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State for Searches -->
+    <div id="emptyState" class="empty-state">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <h3>No matching files found</h3>
+      <p>Try searching with another experiment name, keyword, or clear filters.</p>
+      <button class="filter-btn" onclick="clearFilters()" style="margin: 0 auto;">Reset Search & Filters</button>
+    </div>
+
+    <!-- Grouped View Container -->
+    <div id="groupedViewContainer"></div>
+
+    <!-- Flat Grid View Container -->
+    <div id="flatViewContainer" class="files-grid"></div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <p><strong>Computer Networks Laboratory Resources</strong></p>
+      <p>Static Landing Page • Single-File Implementation (HTML, CSS, JS)</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <span id="toastMessage">Downloaded successfully</span>
+  </div>
+
+  <script>
+    // --- Data Definition ---
+    const filesData = [
+      // Experiment 1
+      {
+        id: "exp1-pdf",
+        expNum: 1,
+        expTitle: "Networking Commands, Cables & Connectors",
+        aim: "To study different networking commands (ping, ipconfig, traceroute) and network cables & connectors.",
+        title: "Experiment 01 - Networking Commands Lab Manual",
+        filename: "exp1.pdf",
+        path: "expts/exp1.pdf",
+        type: "pdf",
+        size: "848 KB",
+        sizeBytes: 868599
+      },
+
+      // Experiment 2
+      {
+        id: "exp2-pdf",
+        expNum: 2,
+        expTitle: "Wired LAN Setup & Connectivity Testing",
+        aim: "Simulate a wired Local Area Network (LAN) using networking devices and test connectivity using PING utility.",
+        title: "Experiment 02 - Wired LAN Lab Manual",
+        filename: "exp2 wired lan.pdf",
+        path: "expts/exp2%20wired%20lan.pdf",
+        type: "pdf",
+        size: "317 KB",
+        sizeBytes: 324636
+      },
+      {
+        id: "exp2-pkt",
+        expNum: 2,
+        expTitle: "Wired LAN Setup & Connectivity Testing",
+        aim: "Simulate a wired Local Area Network (LAN) using networking devices and test connectivity using PING utility.",
+        title: "Experiment 02 - Wired LAN Simulation",
+        filename: "exp 2 - wired lan.pkt",
+        path: "Cisco%20Files/exp%202%20-%20wired%20lan.pkt",
+        type: "pkt",
+        size: "42 KB",
+        sizeBytes: 43114
+      },
+
+      // Experiment 3
+      {
+        id: "exp3-pdf",
+        expNum: 3,
+        expTitle: "Network Topologies (Bus, Star, Ring, Mesh)",
+        aim: "Create and simulate different network topologies (Bus, Star, Ring, and Mesh) using Cisco Packet Tracer.",
+        title: "Experiment 03 - Network Topologies Lab Manual",
+        filename: "exp3 topo.pdf",
+        path: "expts/exp3%20topo.pdf",
+        type: "pdf",
+        size: "1.0 MB",
+        sizeBytes: 1065509
+      },
+      {
+        id: "exp3-pkt-bus",
+        expNum: 3,
+        expTitle: "Network Topologies (Bus, Star, Ring, Mesh)",
+        aim: "Create and simulate different network topologies (Bus, Star, Ring, and Mesh) using Cisco Packet Tracer.",
+        title: "Experiment 03 - Bus Topology Simulation",
+        filename: "exp 3 - bus topo.pkt",
+        path: "Cisco%20Files/exp%203%20-%20bus%20topo.pkt",
+        type: "pkt",
+        size: "51 KB",
+        sizeBytes: 52497
+      },
+      {
+        id: "exp3-pkt-star",
+        expNum: 3,
+        expTitle: "Network Topologies (Bus, Star, Ring, Mesh)",
+        aim: "Create and simulate different network topologies (Bus, Star, Ring, and Mesh) using Cisco Packet Tracer.",
+        title: "Experiment 03 - Star Topology Simulation",
+        filename: "exp 3 - star topo.pkt",
+        path: "Cisco%20Files/exp%203%20-%20star%20topo.pkt",
+        type: "pkt",
+        size: "42 KB",
+        sizeBytes: 43439
+      },
+      {
+        id: "exp3-pkt-ring",
+        expNum: 3,
+        expTitle: "Network Topologies (Bus, Star, Ring, Mesh)",
+        aim: "Create and simulate different network topologies (Bus, Star, Ring, and Mesh) using Cisco Packet Tracer.",
+        title: "Experiment 03 - Ring Topology Simulation",
+        filename: "exp 3 - ring topo.pkt",
+        path: "Cisco%20Files/exp%203%20-%20ring%20topo.pkt",
+        type: "pkt",
+        size: "45 KB",
+        sizeBytes: 45896
+      },
+      {
+        id: "exp3-pkt-mesh",
+        expNum: 3,
+        expTitle: "Network Topologies (Bus, Star, Ring, Mesh)",
+        aim: "Create and simulate different network topologies (Bus, Star, Ring, and Mesh) using Cisco Packet Tracer.",
+        title: "Experiment 03 - Mesh Topology Simulation",
+        filename: "exp 3 - mesh topo.pkt",
+        path: "Cisco%20Files/exp%203%20-%20mesh%20topo.pkt",
+        type: "pkt",
+        size: "53 KB",
+        sizeBytes: 54139
+      },
+
+      // Experiment 4
+      {
+        id: "exp4-pdf",
+        expNum: 4,
+        expTitle: "Sliding Window Protocols",
+        aim: "Simulate sliding window flow control protocols (Stop-and-Wait, Go-Back-N, Selective Repeat) using Packet Tracer.",
+        title: "Experiment 04 - Sliding Window Protocol Manual",
+        filename: "exp4 sliding.pdf",
+        path: "expts/exp4%20sliding.pdf",
+        type: "pdf",
+        size: "449 KB",
+        sizeBytes: 460159
+      },
+      {
+        id: "exp4-pkt",
+        expNum: 4,
+        expTitle: "Sliding Window Protocols",
+        aim: "Simulate sliding window flow control protocols (Stop-and-Wait, Go-Back-N, Selective Repeat) using Packet Tracer.",
+        title: "Experiment 04 - Sliding Window Simulation",
+        filename: "exp 4 - Sliding window.pkt",
+        path: "Cisco%20Files/exp%204%20-%20Sliding%20window.pkt",
+        type: "pkt",
+        size: "48 KB",
+        sizeBytes: 49534
+      },
+
+      // Experiment 6
+      {
+        id: "exp6-pdf",
+        expNum: 6,
+        expTitle: "Network Traffic Analysis using Wireshark",
+        aim: "Analyze network traffic packets, protocols (TCP, UDP, ICMP, HTTP) and headers using Wireshark packet sniffer.",
+        title: "Experiment 06 - Wireshark Analysis Lab Manual",
+        filename: "exp6 wireshark.pdf",
+        path: "expts/exp6%20wireshark.pdf",
+        type: "pdf",
+        size: "1.5 MB",
+        sizeBytes: 1547741
+      },
+
+      // Experiment 7
+      {
+        id: "exp7-pdf",
+        expNum: 7,
+        expTitle: "Static & Dynamic Routing Protocols (RIP & OSPF)",
+        aim: "Configure and verify Static Routing and Dynamic Routing protocols (RIP and OSPF) in a simulated network.",
+        title: "Experiment 07 - Static & Dynamic Routing Manual",
+        filename: "exp7 static & dynamic route.pdf",
+        path: "expts/exp7%20static%20%26%20dynamic%20route.pdf",
+        type: "pdf",
+        size: "276 KB",
+        sizeBytes: 282217
+      },
+      {
+        id: "exp7-pkt",
+        expNum: 7,
+        expTitle: "Static & Dynamic Routing Protocols (RIP & OSPF)",
+        aim: "Configure and verify Static Routing and Dynamic Routing protocols (RIP and OSPF) in a simulated network.",
+        title: "Experiment 07 - Static & Dynamic Routing Simulation",
+        filename: "exp 7 - static and dynamic routing.pkt",
+        path: "Cisco%20Files/exp%207%20-%20static%20and%20dynamic%20routing.pkt",
+        type: "pkt",
+        size: "50 KB",
+        sizeBytes: 51422
+      },
+
+      // Experiment 8
+      {
+        id: "exp8-pdf",
+        expNum: 8,
+        expTitle: "VLAN Configuration & Inter-VLAN Routing",
+        aim: "Design and simulate Virtual LANs (VLANs) on Cisco switches/routers with port assignments and trunking.",
+        title: "Experiment 08 - VLAN Configuration Lab Manual",
+        filename: "exp8 vlan.pdf",
+        path: "expts/exp8%20vlan.pdf",
+        type: "pdf",
+        size: "309 KB",
+        sizeBytes: 316458
+      },
+      {
+        id: "exp8-pkt",
+        expNum: 8,
+        expTitle: "VLAN Configuration & Inter-VLAN Routing",
+        aim: "Design and simulate Virtual LANs (VLANs) on Cisco switches/routers with port assignments and trunking.",
+        title: "Experiment 08 - VLAN Setup Simulation",
+        filename: "exp 8 - vlan.pkt",
+        path: "Cisco%20Files/exp%208%20-%20vlan.pkt",
+        type: "pkt",
+        size: "45 KB",
+        sizeBytes: 45733
+      },
+
+      // Experiment 9
+      {
+        id: "exp9-pdf",
+        expNum: 9,
+        expTitle: "FTP Server Configuration & File Transfer",
+        aim: "Configure an FTP server and transfer files between client and server to demonstrate application layer protocols.",
+        title: "Experiment 09 - FTP Server Setup Lab Manual",
+        filename: "exp9 ftp server.pdf",
+        path: "expts/exp9%20ftp%20server.pdf",
+        type: "pdf",
+        size: "290 KB",
+        sizeBytes: 296518
+      },
+      {
+        id: "exp9-pkt",
+        expNum: 9,
+        expTitle: "FTP Server Configuration & File Transfer",
+        aim: "Configure an FTP server and transfer files between client and server to demonstrate application layer protocols.",
+        title: "Experiment 09 - FTP Server Simulation",
+        filename: "exp 9 - ftp server.pkt",
+        path: "Cisco%20Files/exp%209%20-%20ftp%20server.pkt",
+        type: "pkt",
+        size: "60 KB",
+        sizeBytes: 61728
+      }
+    ];
+
+    // State
+    let currentFilter = 'all';
+    let searchQuery = '';
+    let currentView = 'grouped'; // 'grouped' or 'flat'
+
+    // DOM Elements
+    const searchInput = document.getElementById('searchInput');
+    const clearSearch = document.getElementById('clearSearch');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const viewGroupedBtn = document.getElementById('viewGroupedBtn');
+    const viewFlatBtn = document.getElementById('viewFlatBtn');
+    const groupedViewContainer = document.getElementById('groupedViewContainer');
+    const flatViewContainer = document.getElementById('flatViewContainer');
+    const emptyState = document.getElementById('emptyState');
+    const visibleCountSpan = document.getElementById('visibleCount');
+    const btnDownloadAll = document.getElementById('btnDownloadAll');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const themeLabel = document.getElementById('themeLabel');
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+
+    // SVG Icons
+    const icons = {
+      pdf: `<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-6 4h4" />
+            </svg>`,
+      pkt: `<svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            </svg>`,
+      download: `<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>`,
+      preview: `<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>`
+    };
+
+    // Filter Logic
+    function getFilteredFiles() {
+      const q = searchQuery.toLowerCase().trim();
+      return filesData.filter(file => {
+        // Filter by type
+        if (currentFilter !== 'all' && file.type !== currentFilter) {
+          return false;
+        }
+        // Filter by search query
+        if (q) {
+          const matchTitle = file.title.toLowerCase().includes(q);
+          const matchFilename = file.filename.toLowerCase().includes(q);
+          const matchExpNum = ("exp " + file.expNum).includes(q) || ("experiment " + file.expNum).includes(q) || ("exp" + file.expNum).includes(q);
+          const matchExpTitle = file.expTitle.toLowerCase().includes(q);
+          const matchAim = file.aim.toLowerCase().includes(q);
+          return matchTitle || matchFilename || matchExpNum || matchExpTitle || matchAim;
+        }
+        return true;
+      });
+    }
+
+    // Render Single File Card
+    function createFileCardHTML(file) {
+      const isPdf = file.type === 'pdf';
+      const typeClass = isPdf ? 'pdf' : 'pkt';
+      const icon = isPdf ? icons.pdf : icons.pkt;
+      const previewBtn = isPdf 
+        ? `<a href="${file.path}" target="_blank" rel="noopener noreferrer" class="btn btn-preview" title="View / Preview PDF in new tab">
+             ${icons.preview} View
+           </a>`
+        : '';
+
+      return `
+        <div class="file-card" data-file-id="${file.id}">
+          <div class="file-card-top">
+            <div class="file-icon-box ${typeClass}">
+              ${icon}
+            </div>
+            <div class="file-info">
+              <div class="file-display-name">${file.title}</div>
+              <div class="file-real-name" title="${file.filename}">${file.filename}</div>
+              <div class="file-pills">
+                <span class="pill pill-${typeClass}">${file.type.toUpperCase()}</span>
+                <span class="pill pill-size">${file.size}</span>
+              </div>
+            </div>
+          </div>
+          <div class="file-actions">
+            <a href="${file.path}" download="${file.filename}" class="btn btn-download" title="Download ${file.filename}" onclick="showToast('Downloading ${file.filename}...')">
+              ${icons.download} Download
+            </a>
+            ${previewBtn}
+          </div>
+        </div>
+      `;
+    }
+
+    // Render Function
+    function render() {
+      const filtered = getFilteredFiles();
+      visibleCountSpan.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        emptyState.style.display = 'block';
+        groupedViewContainer.style.display = 'none';
+        flatViewContainer.style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+
+      if (currentView === 'grouped') {
+        groupedViewContainer.style.display = 'block';
+        flatViewContainer.style.display = 'none';
+
+        // Group by experiment
+        const groups = {};
+        filtered.forEach(file => {
+          if (!groups[file.expNum]) {
+            groups[file.expNum] = {
+              expNum: file.expNum,
+              expTitle: file.expTitle,
+              aim: file.aim,
+              files: []
+            };
+          }
+          groups[file.expNum].files.push(file);
+        });
+
+        const sortedExpNums = Object.keys(groups).sort((a, b) => parseInt(a) - parseInt(b));
+
+        let html = '';
+        sortedExpNums.forEach(num => {
+          const group = groups[num];
+          const filesCount = group.files.length;
+          const filesCountText = filesCount === 1 ? '1 file' : `${filesCount} files`;
+
+          html += `
+            <section class="exp-section">
+              <div class="exp-header">
+                <div class="exp-meta">
+                  <span class="exp-number-tag">EXP ${group.expNum.toString().padStart(2, '0')}</span>
+                  <h2 class="exp-title">${group.expTitle}</h2>
+                </div>
+                <span class="exp-files-count">${filesCountText}</span>
+                <p class="exp-aim"><strong>Objective:</strong> ${group.aim}</p>
+              </div>
+              <div class="files-grid">
+                ${group.files.map(createFileCardHTML).join('')}
+              </div>
+            </section>
+          `;
+        });
+
+        groupedViewContainer.innerHTML = html;
+      } else {
+        // Flat Grid View
+        groupedViewContainer.style.display = 'none';
+        flatViewContainer.style.display = 'grid';
+        flatViewContainer.innerHTML = filtered.map(createFileCardHTML).join('');
+      }
+    }
+
+    // Download All Visible Files Helper
+    btnDownloadAll.addEventListener('click', () => {
+      const files = getFilteredFiles();
+      if (files.length === 0) return;
+
+      if (!confirm(`Are you sure you want to download all ${files.length} visible files?`)) {
+        return;
+      }
+
+      showToast(`Initiating download for ${files.length} files...`);
+
+      // Trigger downloads sequentially with a small delay so browser doesn't block popups
+      files.forEach((file, index) => {
+        setTimeout(() => {
+          const link = document.createElement('a');
+          link.href = file.path;
+          link.download = file.filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          if (index === files.length - 1) {
+            showToast(`All ${files.length} files initiated!`);
+          }
+        }, index * 280);
+      });
+    });
+
+    // Toast Function
+    let toastTimeout;
+    function showToast(msg) {
+      toastMessage.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    // Filter Buttons Click
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        render();
+      });
+    });
+
+    // View Toggle
+    viewGroupedBtn.addEventListener('click', () => {
+      currentView = 'grouped';
+      viewGroupedBtn.classList.add('active');
+      viewFlatBtn.classList.remove('active');
+      render();
+    });
+
+    viewFlatBtn.addEventListener('click', () => {
+      currentView = 'flat';
+      viewFlatBtn.classList.add('active');
+      viewGroupedBtn.classList.remove('active');
+      render();
+    });
+
+    // Search Input
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      clearSearch.style.display = searchQuery ? 'block' : 'none';
+      render();
+    });
+
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      searchQuery = '';
+      clearSearch.style.display = 'none';
+      searchInput.focus();
+      render();
+    });
+
+    function clearFilters() {
+      searchInput.value = '';
+      searchQuery = '';
+      clearSearch.style.display = 'none';
+      currentFilter = 'all';
+      filterBtns.forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === 'all');
+      });
+      render();
+    }
+
+    // Keyboard Shortcuts
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === '/' || (e.ctrlKey && e.key === 'k')) && document.activeElement !== searchInput) {
+        e.preventDefault();
+        searchInput.focus();
+      } else if (e.key === 'Escape' && document.activeElement === searchInput) {
+        searchInput.value = '';
+        searchQuery = '';
+        clearSearch.style.display = 'none';
+        searchInput.blur();
+        render();
+      }
+    });
+
+    // Dark/Light Theme Toggle
+    function initTheme() {
+      const savedTheme = localStorage.getItem('cn_theme');
+      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    }
+
+    function setTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = '☀️';
+        themeLabel.textContent = 'Light';
+        localStorage.setItem('cn_theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        themeIcon.textContent = '🌙';
+        themeLabel.textContent = 'Dark';
+        localStorage.setItem('cn_theme', 'light');
+      }
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      setTheme(isDark ? 'light' : 'dark');
+    });
+
+    // Initial Setup
+    initTheme();
+    render();
+  </script>
+</body>
+</html>

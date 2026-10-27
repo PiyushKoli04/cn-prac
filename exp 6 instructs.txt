@@ -1,0 +1,6 @@
+Getting each part of the experiment
+ICMP: Start capturing, run ping google.com, then filter with icmp. You should see Echo (ping) request and reply pairs.
+HTTP: Open http://neverssl.com or http://example.com. Most sites use HTTPS now, so you need a plain-HTTP site to get GET requests. Filter with http.
+HTTPS: Open any HTTPS site and filter with tls. Look for Client Hello and Server Hello.
+UDP: Run nslookup google.com while capturing and filter with dns or udp.
+TCP: Filter with tcp. Expand “Transmission Control Protocol” to see the ports, sequence number, acknowledgment number and flags.
